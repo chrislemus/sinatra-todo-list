@@ -107,6 +107,32 @@ footer {
   }
 }
 
+form {
+  color: rgb(102, 102, 102);
+  & > textarea {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 30px;
+  }
+  & > input[type='date'] {
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 10px 0 40px;
+    display: block;
+  }
+}
+
+.edit-task-form {
+  margin-top: 50px;
+}
+
+.task-delete-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: rgb(255, 80, 80);
+}
+
 .task-info {
   display: block;
   & span {

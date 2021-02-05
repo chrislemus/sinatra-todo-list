@@ -1,7 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-  @@acount_settings = {sort: asc}
+  @@acount_settings = {sort: 'asc'}
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -32,6 +32,7 @@ class ApplicationController < Sinatra::Base
 
   post('/signup') {
     params.each{ |k,v| redirect '/signup' if v.empty?}
+    redirect '/signup' if User.find_by(username: params[:username])
     user = User.create(username: params[:username], password: params[:password])
     session[:user_id] = user.id
     redirect "/users/#{user.username}"

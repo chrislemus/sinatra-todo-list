@@ -45,5 +45,11 @@ class TaskController < ApplicationController
     
     redirect "/users/#{user.username}"
   }
+  delete('/tasks/:task_id') {
+    task = Task.find(params[:task_id])
+    user = Helpers.current_user(session)
+    task.destroy if task.user_id == user.id
+    redirect "/users/#{user.username}"
+  }
 
 end
