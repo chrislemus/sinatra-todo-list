@@ -1,0 +1,13 @@
+
+<form method=POST action=<%="/tasks/#{@task.id}/edit"%>>
+
+  <label for=task>Task</label>
+  <input type=text value="<%=@task.task%>" name=task id=task>
+
+  <label for=due-date>Due date</label>
+  <input type=date value="<%=@task.due_date%>" name=due_date id=due-date>
+  
+  <input type=submit value=Update>
+
+  <input type=hidden name='_method' value=PATCH>
+</form>
