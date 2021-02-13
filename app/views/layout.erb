@@ -8,22 +8,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
     <title>SinatraTodoListApp</title>
-
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/normalize.css" />
     <link rel="stylesheet" href="/stylesheets/main.min.css?version=3" />
   </head>
   <body>
     <header>
-      <h1><a href='/'>Sinatra Todo List</a></h1>
-      <div class=user-info>
-        <%if Helpers.logged_in?(session)%>
-          <span><%=Helpers.current_user(session).username.upcase%></span>
-          <a href=/logout>Logout</a>
-          <a id=new-task-btn href=/tasks/new>+</a>
-        <%else%>
-          <a href='/'>Login</a>
-        <%end%>
+      <div class='header-content'>
+        <h1><a href='/'>Sinatra Todo List</a></h1>
+        <div class=user-info>
+          <%if Helpers.logged_in?(session)%>
+            <a id=new-task-btn href=/tasks/new>+</a>
+            <div class=user-icon-wrapper>
+              <div class='user-icon'>
+                <span ><%=Helpers.current_user(session).username.slice(0,2).upcase%></span>
+                <div class=submenu>
+                  <a href='/categories'>Categories</a>
+                  <a href=/logout>Logout</a>
+                </div>
+              </div>
+            </div>
+
+            
+            
+          <%else%>
+            <a class='login-btn' href='/'>Login</a>
+          <%end%>
+        </div>
       </div>
     </header>
     <div id=layout-container>

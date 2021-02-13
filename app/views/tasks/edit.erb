@@ -3,11 +3,22 @@
 
   <textarea name=task id=task><%=@task.task.to_s%></textarea>
 
-
   <label for=due-date>Due date</label>
   <input type=date value="<%=@task.due_date%>" name=due_date id=due-date>
 
-  <input type=submit value=Update>
+  <label for='category'>Assign category:</label>
+  <br>
+  <select name='category' id='category'>
+    <option value='nil'>none</option>
+    <%@categories.each do |c|%>
+      <%selected = @task.category_id == c.id ? 'selected' : ''%>
+      <option value=<%="#{c.id}"%> <%=selected%> >  <%="#{c.name}"%> </option>
+    <%end%>
+  </select>
+
+
+  <br>
+  <input class='btn-primary my-1' type=submit value=Update>
   <input type=hidden name='_method' value=PATCH>
 </form>
 

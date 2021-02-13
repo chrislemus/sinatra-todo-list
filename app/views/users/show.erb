@@ -1,24 +1,38 @@
 
-<h1>WELCOME <%=@user.username.upcase%></h1>
 
+<div class='sort-btns-wrapper'>
+  <form  method=post action='/user/sort/due-date'>
+    <input class='task-sort-btn' type=submit value="<%=@sort_due_date%>">
+  </form>
+  <form  method=post action='/user/sort/completed'>
+    <input class='task-sort-btn' type=submit value="<%=@sort_completed%>">
+  </form>
+</div>
 <br>
 
-<%@user.tasks.each do |task|%>
-  <div class=task-container>
-    <form method=POST action=<%="/tasks/#{task.id}/complete"%> class=task>
-      <%task_completed = task.date_completed ? ' complete-task-btn-done' : nil%>
-
-      <input type=submit class=complete-task-btn <%= task.date_completed ? 'task-completed' : nil%> value=' '>
-      <label><%=task.task%></label>
-      <a href=<%="/tasks/#{task.id}/edit"%> >•••</a>
-      <input type=hidden name='_method' value=PATCH>
-    </form>
-    <div class=task-info>
-
-      <%if task.due_date%>
-        <span class=task-due><%=task.due_date.strftime('%m-%d-%Y')%></span> 
-      <%end%>
+<%if @tasks.length > 0%>
+  <%@tasks.each do |task|%>
+    <%completed = task.completed ? 'completed' : ''%>
+    <div class=task-container>
+      <form method=POST action=<%="/tasks/#{task.id}/complete"%> class=task>
+        
+        <input type=submit <%=completed%> class=complete-task-btn  value=' '>
+        <label><%=task.task%></label>
+        <a href=<%="/tasks/#{task.id}/edit"%> >•••</a>
+        <input type=hidden name='_method' value=PATCH>
+      </form>
+      
+      <div class=task-info>
+        <%if task.due_date%>
+          <span class=task-due><%=task.due_date.strftime('%m-%d-%Y')%></span> 
+        <%end%>
+        <%if task.category_id%>
+          <span class=task-category><%=Category.find(task.category_id).name%></span>
+        <%end%>
+      </div>
     </div>
-    
-  </div>
+  <%end%>
+<%else%>
+  <h2>¯\_(ツ)_/¯ </h2>
+  <h4>no tasks to show... <a href='/tasks/new'>click here</a> to create a task</h4>
 <%end%>

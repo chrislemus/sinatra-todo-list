@@ -1,11 +1,12 @@
-<form class=login-form method=POST acton='/signup'>
+<form class='login-signup-form' method=POST acton='/signup'>
   <h2>Create a new Account</h2> 
+  <p>only alphanumeric characters are valid</p>
 
   <label for=username>username</label>
-  <input name='username' id='username'>
+  <input type=text name='username' id='username'>
 
   <label for=password>password</label>
-  <input name='password' id='password'>
+  <input type=text name='password' id='password'>
 
-  <input type=submit value='Create Account'>
+  <input class='btn-primary mt-1' type=submit value='Create Account'>
 </form>

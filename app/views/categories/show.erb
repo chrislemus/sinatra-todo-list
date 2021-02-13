@@ -1,0 +1,22 @@
+<h1>Categories</h1>
+<p>You may rename/delete existing categories. Or add a new category.</p>
+<br>
+<%@categories.each do |c|%>
+  <div class=category-input-container>
+    <form method=post action=<%="/categories/#{c.id}"%>>
+      <input type=text  value="<%=c.name%>" name=category_name>
+      <input type=submit class='update-category-btn' value='⟳'>
+      <input type=hidden name='_method' value='patch'>
+    </form>
+
+    <form method=post action=<%="/categories/#{c.id}"%> >
+      <input type=submit class='delete-category-btn' value='X'>
+      <input type=hidden name='_method' value='delete'>
+    </form>
+  </div>
+<%end%>
+<br>
+<form method=post action=<%="/categories"%> >
+  <input type=text  name=category_name placeholder='new category'>
+  <input type=submit class='update-category-btn' value='⎋'>
+</form>

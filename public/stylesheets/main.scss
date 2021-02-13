@@ -4,42 +4,145 @@ $primary-color: rgb(31, 165, 255);
   box-sizing: border-box;
 }
 
+.my-1 {
+  margin: 20px auto;
+}
+.my-2 {
+  margin: 40px auto;
+}
+
+.mb-1 {
+  margin-bottom: 20px;
+}
+
+.mt-1 {
+  margin-top: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+select,
+input {
+  border: none;
+  outline: none;
+}
+
+.login-btn {
+  color: #fff;
+}
+
+select,
+input[type='text'],
+input[type='date'] {
+  border-bottom: 1px solid black;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+.task-delete-btn {
+  background: none;
+  color: rgb(255, 80, 80);
+}
+
 header {
   height: 60px;
-  padding: 10px 20px;
-  margin: 0;
+  padding: 10px 70px;
   background: $primary-color;
-  color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  & h1 {
-    margin: 0;
-    & a {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
-  & .user-info {
+  .header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    color: #fff;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    & a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: white;
+    & h1 {
+      margin: 0;
+      & a {
+        color: #fff;
+      }
     }
-    & #new-task-btn {
-      color: $primary-color;
-      font-size: 20px;
-      padding: 5px 10px;
-      border-radius: 30px;
-      // height: 30px;
-      // width: 30px;
-      background: white;
+    & .user-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      & #new-task-btn {
+        display: block;
+        color: #fff;
+        font-size: 30px;
+        &:hover {
+          transition-duration: 0.2s;
+          transform: scale(1.3);
+        }
+      }
     }
-    // margin: auto;
+  }
+}
+
+.user-icon {
+  display: block;
+  display: flex;
+  align-content: center;
+  padding: 0px;
+  height: 35px;
+  width: 35px;
+  transition-duration: 0.3s;
+  background: rgb(10, 218, 121);
+  border-radius: 50%;
+  border: 2px solid rgb(245, 245, 245);
+  & span {
+    display: block;
+    color: rgb(238, 250, 255);
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+.user-icon-wrapper {
+  margin-left: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  &:hover {
+    & .user-icon {
+      box-shadow: 0px 0px 15px rgb(65, 248, 187);
+      cursor: pointer;
+    }
+    & .submenu {
+      display: block;
+    }
+  }
+}
+
+.submenu {
+  color: rgb(95, 160, 111);
+  background: #fff;
+  box-shadow: 0px 0px 5px rgb(201, 201, 201);
+  position: absolute;
+  right: -50%;
+  bottom: -150%;
+  border-radius: 5px;
+  display: none;
+  & a {
+    display: block;
+    padding: 5px 15px;
+    color: $primary-color;
   }
 }
 
@@ -48,10 +151,7 @@ header {
   padding: 10px;
   width: 80vw;
   max-width: 850px;
-  margin: 0 auto;
-  // display: flex;
-  // flex-wrap: wrap;
-  // flex-direction: column;
+  margin: 20px auto 0;
 }
 
 footer {
@@ -62,102 +162,114 @@ footer {
   background: rgb(233, 233, 233);
 }
 
-.login-form {
+.login-signup-form {
   display: flex;
-  padding-top: 20px;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
   & label {
-    margin-bottom: 10px;
+    margin: 20px 0 10px;
   }
-  & input:not(:last-child) {
-    margin-bottom: 20px;
-    border: 2px solid rgb(175, 175, 175);
-    border-radius: 20px;
-    padding: 5px 15px;
-    outline: none;
+}
+
+form {
+  & > textarea {
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 30px;
   }
-  & input[type='submit'] {
-    border: none;
-    background: $primary-color;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
+  & > input[type='date'] {
+    margin: 10px 0 40px;
+    display: block;
+    min-width: 200px;
+  }
+  & select {
+    margin-top: 10px;
+    min-width: 200px;
   }
 }
 
 .task-container {
   border-bottom: 1px solid rgb(233, 233, 233);
   padding: 10px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
 }
 
 .task {
   display: flex;
+  width: 100%;
   & a {
-    margin-left: auto;
-    text-decoration: none;
     color: rgb(151, 151, 151);
     font-weight: bolder;
     font-size: 20px;
   }
-}
-
-form {
-  color: rgb(102, 102, 102);
-  & > textarea {
-    width: 100%;
-    min-height: 100px;
-    margin-bottom: 30px;
+  & label {
+    flex-grow: 1;
+    margin-right: 10px;
   }
-  & > input[type='date'] {
-    border: none;
-    border-bottom: 1px solid black;
-    margin: 10px 0 40px;
-    display: block;
-  }
-}
-
-.edit-task-form {
-  margin-top: 50px;
-}
-
-.task-delete-btn {
-  margin-top: 10px;
-  background: none;
-  border: none;
-  color: rgb(255, 80, 80);
 }
 
 .task-info {
   display: block;
+  width: 93%;
+  margin: 0 auto;
   & span {
     color: white;
-    margin-top: 10px;
-    margin-left: 30px;
+    margin: 5px;
     padding: 2px 5px;
     display: inline-block;
     border-radius: 5px;
-    background: rgb(255, 113, 120);
     font-size: 12px;
-    // width: auto;
+  }
+  & .task-due {
+    background: rgb(255, 113, 120);
+  }
+  & .task-category {
+    background: rgb(192, 99, 255);
   }
 }
 
 .complete-task-btn {
-  outline: none;
   height: 20px;
   width: 20px;
   background: transparent;
   border: 1px solid rgb(218, 218, 218);
   border-radius: 30px;
   margin-right: 10px;
+  &[completed] {
+    background: $primary-color;
+  }
 }
 
-input[task-completed] {
-  background: $primary-color;
+.sort-btns-wrapper {
+  display: flex;
+  & form:not(:first-child) .task-sort-btn {
+    border-left: 1px solid rgb(216, 216, 216);
+  }
+}
+
+.category-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 15px;
+  & form {
+    display: inline-block;
+  }
+}
+
+.update-category-btn {
+  color: rgb(101, 202, 0);
+  background: none;
+}
+
+.delete-category-btn {
+  background: none;
+  color: red;
+}
+
+.task-sort-btn {
+  background: none;
+  padding: 0 20px;
+  color: rgb(0, 150, 219);
 }
